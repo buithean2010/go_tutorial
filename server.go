@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	videoSvc services.VideoSvc           = services.NewVideoSvc()
-	videoCtl controllers.VideoController = controllers.NewVideoCtl(videoSvc)
+	videoSvc services.VideoSvc           = services.New()
+	videoCtl controllers.VideoController = controllers.New(videoSvc)
 )
 
 func setupLogger(toFile bool) {
@@ -54,8 +54,21 @@ func main() {
 	})
 
 	r.POST("/save", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, videoCtl.Save(ctx))
+		err := videoCtl.Save(ctx)
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		} else {
+			ctx.JSON(http.StatusOK, gin.H{"message": "Video Input is valid"})
+		}
 	})
 
 	r.Run()
+	// s := &http.Server{
+	// 	Addr:           ":8080",
+	// 	Handler:        r,
+	// 	ReadTimeout:    10 * time.Second,
+	// 	WriteTimeout:   10 * time.Second,
+	// 	MaxHeaderBytes: 1 << 20,
+	// }
+	// s.ListenAndServe()
 }

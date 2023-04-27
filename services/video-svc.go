@@ -11,7 +11,7 @@ type videoSvc struct {
 	videos []entities.Video
 }
 
-func NewVideoSvc() *videoSvc {
+func New() *videoSvc {
 	return &videoSvc{
 		videos: []entities.Video{},
 	}
