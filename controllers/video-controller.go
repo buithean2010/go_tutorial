@@ -16,23 +16,23 @@ type VideoController interface {
 	Save(ctx *gin.Context) error
 }
 
-type controller struct {
-	service services.VideoSvc
+type videoController struct {
+	service services.VideoService
 }
 
-func New(srv services.VideoSvc) *controller {
+func NewVideoController(srv services.VideoService) *videoController {
 	validate = validator.New()
 
-	return &controller{
+	return &videoController{
 		service: srv,
 	}
 }
 
-func (c *controller) GetVideos() []entities.Video {
+func (c *videoController) GetVideos() []entities.Video {
 	return c.service.GetVideos()
 }
 
-func (c *controller) Save(ctx *gin.Context) error {
+func (c *videoController) Save(ctx *gin.Context) error {
 	var video entities.Video
 
 	// Binding errors

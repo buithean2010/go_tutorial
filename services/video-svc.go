@@ -2,26 +2,26 @@ package services
 
 import "web-go-gin/entities"
 
-type VideoSvc interface {
+type VideoService interface {
 	GetVideos() []entities.Video
 	Save(entities.Video) entities.Video
 }
 
-type videoSvc struct {
+type videoService struct {
 	videos []entities.Video
 }
 
-func New() *videoSvc {
-	return &videoSvc{
+func NewVideoService() *videoService {
+	return &videoService{
 		videos: []entities.Video{},
 	}
 }
 
-func (svc *videoSvc) GetVideos() []entities.Video {
+func (svc *videoService) GetVideos() []entities.Video {
 	return svc.videos
 }
 
-func (svc *videoSvc) Save(vid entities.Video) entities.Video {
+func (svc *videoService) Save(vid entities.Video) entities.Video {
 	svc.videos = append(svc.videos, vid)
 	return vid
 }

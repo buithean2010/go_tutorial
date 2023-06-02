@@ -1,0 +1,2 @@
+curl -XPOST -d '{"username" : "admin", "password": "password" }' 'http://127.0.0.1:8080/api/login'
+curl -XGET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJhZG1pbiI6dHJ1ZSwiaXNzIjoiYnVpdGhlYW4yMDEwQGdtYWlsLmNvbSIsImV4cCI6MTY4NTgwMTYzMn0.l754c4g9LWdyYmMfShjSRl7gUU3Imoj6A9awbWobdCA' 'http://127.0.0.1:8080/api/videos'
